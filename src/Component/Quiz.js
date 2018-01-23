@@ -8,11 +8,11 @@ export default class Quiz extends Component {
 
 
     render() {
-        const {data: {title, options, correct}, classBtn, handleClick} = this.props;
+        const {data: {title, answers}, classBtn, correctAnswer, handleClick} = this.props;
 
         return <div className="quiz">
             <QuestionTitle title={title}/>
-            <Question correct={correct} variant={options} classBtn = {classBtn} handleClick={handleClick}/>
+            <Question answers={answers} correctAnswer = {correctAnswer} classBtn = {classBtn} handleClick={handleClick}/>
         </div>
     }
 }

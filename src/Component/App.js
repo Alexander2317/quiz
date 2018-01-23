@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Quiz from "./Quiz";
+import cx from 'classnames/bind';
 
 export default class App extends Component {
     state = {
         currentQuestion: 0,
-        correctAnswers: 0,
+        correctAnswer: null,
         maxQuestion: 0,
-        classBtn: '',
+        classBtn: null,
         endGame: true
     }
 
@@ -19,10 +20,16 @@ export default class App extends Component {
     }
 
     handleClick = (e) => {
-        const {currentQuestion, maxQuestion, endGame} = this.state;
-        const checkCorrect = +e.target.dataset.correct;
+        const {currentQuestion,maxQuestion, correctAnswer, endGame} = this.state;
+        const question = this.props.data[currentQuestion].answers;
 
-        if(currentQuestion >= (maxQuestion - 1)) {
+        const rightAnswer = question.find((el) => {
+            return el.correct === true
+        });
+
+        const targetValue = e.target.innerHTML;
+
+        if (currentQuestion >= (maxQuestion - 1)) {
             this.setState({
                 endGame: !endGame
             });
@@ -30,26 +37,31 @@ export default class App extends Component {
             return;
         }
 
-        // if(checkCorrect) {
-        //     e.target.classList.add('quiz-btn-right')
-        // } else {
-        //     e.target.classList.add('quiz-btn-wrong')
-        // }
+        const checkCorrect = rightAnswer.text === targetValue;
 
-        setTimeout(()=>{
+        this.setState({
+            correctAnswer: checkCorrect,
+            classBtn: cx({
+                'quiz-btn-right': checkCorrect,
+                'quiz-btn-wrong': !checkCorrect
+            })
+        });
+
+        setTimeout(() => {
             this.setState({
                 currentQuestion: currentQuestion + 1,
-                classBtn: ''
+                correctAnswer: null,
+                classBtn: null
             });
-        },5000);
+        }, 5000);
     }
 
     render() {
-        const {currentQuestion, classBtn, endGame} = this.state;
+        const {currentQuestion, correctAnswer, classBtn, endGame} = this.state;
         const {data} = this.props;
 
-        if(endGame) {
-            return <Quiz data={data[currentQuestion]} classBtn = {classBtn} handleClick={this.handleClick}/>
+        if (endGame) {
+            return <Quiz data={data[currentQuestion]} classBtn = {classBtn} correctAnswer={correctAnswer} handleClick={this.handleClick}/>
         } else {
             return <div>End</div>
         }
