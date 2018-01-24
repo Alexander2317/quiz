@@ -2,15 +2,26 @@ import React, {Component} from 'react';
 
 export default class Question extends Component {
     render() {
-        const {answers, correctAnswer, classBtn, handleClick} = this.props;
+        const {
+            answers,
+            idCorrectAnswer,
+            idWrongAnswer,
+            setClassBtnWrong,
+            classBtnRight,
+            handleClick
+        } = this.props;
 
-        const data = answers.map((item) => {
-            return <button className={'quiz-question ' + (item.correct === correctAnswer ? classBtn: '')}
-                        key={item.id}
-                        data-correct={item.correct}
-                        onClick={handleClick}>{item.text}</button>
+        const dataAnswers = answers.map((answer) => {
+            return <button
+                className={'quiz-question ' +
+                (parseInt(answer.id) === idCorrectAnswer ? classBtnRight : '') +
+                (parseInt(answer.id) === idWrongAnswer ? setClassBtnWrong : '')
+                }
+                key={answer.id}
+                data-id-answer={answer.id}
+                onClick={handleClick}>{answer.text}</button>
         });
 
-        return <div className="quiz-question-wrap">{data}</div>
+        return <div className="quiz-question-wrap">{dataAnswers}</div>
     }
 }

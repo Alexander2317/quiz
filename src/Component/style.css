@@ -26,3 +26,6 @@
     background: #12b90b; }
   .quiz-btn-wrong {
     background: #c30000; }
+
+.disable {
+  pointer-events: none; }

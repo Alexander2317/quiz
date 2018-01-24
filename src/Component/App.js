@@ -3,31 +3,32 @@ import Quiz from "./Quiz";
 import cx from 'classnames/bind';
 
 export default class App extends Component {
-    state = {
-        currentQuestion: 0,
-        correctAnswer: null,
-        maxQuestion: 0,
-        classBtn: null,
-        endGame: true
-    }
+    constructor(props) {
+        super(props);
 
-    componentDidMount() {
         const {data} = this.props;
 
-        this.setState({
-            maxQuestion: data.length
-        });
+        this.state = {
+            maxQuestion: data.length,
+            currentQuestion: 0,
+            idCorrectAnswer: null,
+            idWrongAnswer: null,
+            setClassBtnWrong: null,
+            classBtnRight: 'disable quiz-btn-right',
+            classBtnWrong: 'disable quiz-btn-wrong',
+            endGame: true
+        }
     }
 
     handleClick = (e) => {
-        const {currentQuestion,maxQuestion, correctAnswer, endGame} = this.state;
+        const {currentQuestion, maxQuestion, classBtnRight, classBtnWrong, endGame} = this.state;
         const question = this.props.data[currentQuestion].answers;
 
-        const rightAnswer = question.find((el) => {
+        const rightAnswer = parseInt(question.find((el) => {
             return el.correct === true
-        });
+        }).id);
 
-        const targetValue = e.target.innerHTML;
+        const targetValue = parseInt(e.target.dataset.idAnswer);
 
         if (currentQuestion >= (maxQuestion - 1)) {
             this.setState({
@@ -37,31 +38,49 @@ export default class App extends Component {
             return;
         }
 
-        const checkCorrect = rightAnswer.text === targetValue;
+        const checkCorrect = rightAnswer === targetValue;
 
         this.setState({
-            correctAnswer: checkCorrect,
-            classBtn: cx({
-                'quiz-btn-right': checkCorrect,
-                'quiz-btn-wrong': !checkCorrect
+            idCorrectAnswer: rightAnswer,
+            idWrongAnswer: checkCorrect ? rightAnswer : targetValue,
+            setClassBtnRight: cx({
+                [classBtnRight]: checkCorrect,
+            }),
+            setClassBtnWrong: cx({
+                [classBtnWrong]: !checkCorrect
             })
         });
 
         setTimeout(() => {
             this.setState({
                 currentQuestion: currentQuestion + 1,
-                correctAnswer: null,
-                classBtn: null
+                idCorrectAnswer: null,
+                idWrongAnswer: null,
+                setClassBtnRight: null,
+                setClassBtnWrong: null
             });
         }, 5000);
     }
 
     render() {
-        const {currentQuestion, correctAnswer, classBtn, endGame} = this.state;
+        const {
+            currentQuestion,
+            idCorrectAnswer,
+            idWrongAnswer,
+            setClassBtnWrong,
+            classBtnRight,
+            endGame
+        } = this.state;
+
         const {data} = this.props;
 
         if (endGame) {
-            return <Quiz data={data[currentQuestion]} classBtn = {classBtn} correctAnswer={correctAnswer} handleClick={this.handleClick}/>
+            return <Quiz data={data[currentQuestion]}
+                         idCorrectAnswer={idCorrectAnswer}
+                         idWrongAnswer={idWrongAnswer}
+                         setClassBtnWrong={setClassBtnWrong}
+                         classBtnRight = {classBtnRight}
+                         handleClick={this.handleClick}/>
         } else {
             return <div>End</div>
         }

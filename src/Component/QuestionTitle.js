@@ -1,8 +1,5 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class QuestionTitle extends Component {
-
-    render(){
-        return <div className="quiz-title">{this.props.title}</div>
-    }
+export default function QuestionTitle(props) {
+    return <div className="quiz-title">{props.title}</div>
 }

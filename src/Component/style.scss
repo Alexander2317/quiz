@@ -1,12 +1,12 @@
-.quiz{
+.quiz {
   margin-top: 150px;
-  &-title{
+  &-title {
     font-size: 24px;
     text-align: center;
     font-weight: bold;
     margin-bottom: 20px;
   }
-  &-question{
+  &-question {
     display: block;
     width: 200px;
     box-sizing: border-box;
@@ -21,16 +21,20 @@
     cursor: pointer;
     color: #fff;
     transition: all .2s linear;
-    &:hover{
+    &:hover {
       background: #418aa5;
     }
   }
-  &-btn{
-    &-right{
+  &-btn {
+    &-right {
       background: #12b90b;
     }
-    &-wrong{
+    &-wrong {
       background: #c30000;
     }
   }
+}
+
+.disable {
+  pointer-events: none;
 }
