@@ -21,7 +21,14 @@ export default class App extends Component {
     }
 
     handleClick = (e) => {
-        const {currentQuestion, maxQuestion, classBtnRight, classBtnWrong, endGame} = this.state;
+        const {
+            currentQuestion,
+            maxQuestion,
+            classBtnRight,
+            classBtnWrong,
+            endGame
+        } = this.state;
+
         const question = this.props.data[currentQuestion].answers;
 
         const rightAnswer = parseInt(question.find((el) => {
