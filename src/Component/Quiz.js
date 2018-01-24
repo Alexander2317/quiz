@@ -14,8 +14,8 @@ export default class Quiz extends Component {
             idWrongAnswer,
             setClassBtnRight,
             setClassBtnWrong,
-            classBtnRight,
-            handleClick} = this.props;
+            handleClick
+        } = this.props;
 
         return <div className="quiz">
             <QuestionTitle title={title}/>
@@ -24,7 +24,6 @@ export default class Quiz extends Component {
                       idWrongAnswer = {idWrongAnswer}
                       setClassBtnRight={setClassBtnRight}
                       setClassBtnWrong={setClassBtnWrong}
-                      classBtnRight = {classBtnRight}
                       handleClick={handleClick}/>
         </div>
     }

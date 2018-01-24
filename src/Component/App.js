@@ -14,8 +14,6 @@ export default class App extends Component {
             idCorrectAnswer: null,
             idWrongAnswer: null,
             setClassBtnWrong: null,
-            classBtnRight: 'disable quiz-btn-right',
-            classBtnWrong: 'disable quiz-btn-wrong',
             endGame: true
         }
     }
@@ -24,8 +22,6 @@ export default class App extends Component {
         const {
             currentQuestion,
             maxQuestion,
-            classBtnRight,
-            classBtnWrong,
             endGame
         } = this.state;
 
@@ -51,10 +47,10 @@ export default class App extends Component {
             idCorrectAnswer: rightAnswer,
             idWrongAnswer: checkCorrect ? rightAnswer : targetValue,
             setClassBtnRight: cx({
-                [classBtnRight]: checkCorrect,
+                'disable quiz-btn-right': checkCorrect,
             }),
             setClassBtnWrong: cx({
-                [classBtnWrong]: !checkCorrect
+                'disable quiz-btn-wrong': !checkCorrect
             })
         });
 
@@ -75,7 +71,6 @@ export default class App extends Component {
             idCorrectAnswer,
             idWrongAnswer,
             setClassBtnWrong,
-            classBtnRight,
             endGame
         } = this.state;
 
@@ -86,7 +81,6 @@ export default class App extends Component {
                          idCorrectAnswer={idCorrectAnswer}
                          idWrongAnswer={idWrongAnswer}
                          setClassBtnWrong={setClassBtnWrong}
-                         classBtnRight = {classBtnRight}
                          handleClick={this.handleClick}/>
         } else {
             return <div>End</div>

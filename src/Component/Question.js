@@ -7,14 +7,13 @@ export default class Question extends Component {
             idCorrectAnswer,
             idWrongAnswer,
             setClassBtnWrong,
-            classBtnRight,
             handleClick
         } = this.props;
 
         const dataAnswers = answers.map((answer) => {
             return <button
                 className={'quiz-question ' +
-                (parseInt(answer.id) === idCorrectAnswer ? classBtnRight : '') +
+                (parseInt(answer.id) === idCorrectAnswer ? 'disable quiz-btn-wrong' : '') +
                 (parseInt(answer.id) === idWrongAnswer ? setClassBtnWrong : '')
                 }
                 key={answer.id}
