@@ -1,26 +1,30 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
-export default class Question extends Component {
-    render() {
-        const {
-            answers,
-            idCorrectAnswer,
-            idWrongAnswer,
-            setClassBtnWrong,
-            handleClick
-        } = this.props;
+export default function Question(props) {
+    const {
+        answers,
+        idCorrectAnswer,
+        idWrongAnswer,
+        handleClick
+    } = props;
 
-        const dataAnswers = answers.map((answer) => {
-            return <button
-                className={'quiz-question ' +
-                (parseInt(answer.id) === idCorrectAnswer ? 'disable quiz-btn-wrong' : '') +
-                (parseInt(answer.id) === idWrongAnswer ? setClassBtnWrong : '')
-                }
-                key={answer.id}
-                data-id-answer={answer.id}
-                onClick={handleClick}>{answer.text}</button>
-        });
+    const dataAnswers = answers.map((answer) => {
+        return <button
+            className={'quiz-question ' +
+            (parseInt(answer.id) === idCorrectAnswer ? 'disable quiz-btn-right' : '') +
+            (parseInt(answer.id) === idWrongAnswer ? 'disable quiz-btn-wrong' : '')}
+            key={answer.id}
+            data-id-answer={answer.id}
+            onClick={handleClick}>{answer.text}</button>
+    });
 
-        return <div className="quiz-question-wrap">{dataAnswers}</div>
-    }
+    return <div className="quiz-question-wrap">{dataAnswers}</div>
+}
+
+Question.propTypes = {
+    answers: PropTypes.array.isRequired,
+    idCorrectAnswer: PropTypes.any,
+    idWrongAnswer: PropTypes.any,
+    handleClick: PropTypes.func.isRequired
 }
