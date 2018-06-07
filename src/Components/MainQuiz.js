@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import Quiz from "./Quiz";
 import Result from './Result';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux'
 
-export default class App extends Component {
+class MainQuiz extends Component {
     constructor(props) {
         super(props);
 
@@ -88,3 +89,9 @@ export default class App extends Component {
         }
     }
 }
+
+export default connect(state => {
+    return {
+      data: state.quiz
+    }
+})(MainQuiz)
