@@ -5,7 +5,7 @@ import MainQuiz from './Components/MainQuiz';
 import HomePage from './Components/HomePage';
 import store from './store'
 import history from './history'
-import {Route} from 'react-router-dom'
+import {Route, NavLink} from 'react-router-dom'
 
 class Root extends Component {
   render() {
@@ -13,6 +13,9 @@ class Root extends Component {
       <Provider store={store}>
         <Router history={history}>
           <div>
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/quiz'>Quiz</NavLink>
+
             <Route path='/' component={HomePage}/>
             <Route path='/quiz' component={MainQuiz}/>
           </div>

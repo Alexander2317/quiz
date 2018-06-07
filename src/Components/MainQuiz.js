@@ -3,6 +3,7 @@ import Quiz from "./Quiz";
 import Result from './Result';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux'
+import {quizSelector} from '../selectors'
 
 class MainQuiz extends Component {
     constructor(props) {
@@ -80,10 +81,14 @@ class MainQuiz extends Component {
         const {data} = this.props;
 
         if (endGame) {
-            return <Quiz data={data[currentQuestion]}
-                         idCorrectAnswer={idCorrectAnswer}
-                         idWrongAnswer={idWrongAnswer}
-                         handleClick={this.handleClick}/>
+            return <div>
+              <Quiz data={data[currentQuestion]}
+                    idCorrectAnswer={idCorrectAnswer}
+                    idWrongAnswer={idWrongAnswer}
+                    handleClick={this.handleClick}/>
+
+
+            </div>
         } else {
             return <Result countCorrectAnswer = {countCorrectAnswer} maxQuestion = {maxQuestion} />
         }
@@ -91,7 +96,8 @@ class MainQuiz extends Component {
 }
 
 export default connect(state => {
-    return {
-      data: state.quiz
-    }
+  console.log(1);
+  return {
+      data: quizSelector(state)
+   }
 })(MainQuiz)
