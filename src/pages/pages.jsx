@@ -1,16 +1,16 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
-import { ConnectedRouter } from 'connected-react-router'
 
-import { history } from '../redux'
+import Home from './home'
+import Quiz from './quiz'
+import NotFound from './not-found'
 
 const Pages = () => (
-  <ConnectedRouter history={history}>
-    <Switch>
-      <Route exact path="/" render={() => <div>Match</div>} />
-      <Route render={() => <div>Miss</div>} />
-    </Switch>
-  </ConnectedRouter>
+  <Switch>
+    <Route strict exact path="/" component={Home} />
+    <Route strict exact path="/quiz" component={Quiz} />
+    <Route component={NotFound} />
+  </Switch>
 )
 
 export default Pages

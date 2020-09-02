@@ -1,6 +1,6 @@
-import history from './history'
-import store from './store'
+import configureStore from './configure-store'
 import selectors from './selectors'
+import history from './history'
 import * as constants from './constants'
 
-export { history, store, selectors, constants }
+export { configureStore, selectors, constants, history }
