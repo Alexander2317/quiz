@@ -7,7 +7,7 @@ import style from './style.scss'
 
 const Layout = ({ children }) => (
   <section className={style.wrapper}>
-    <main style={style.content}>{children}</main>
+    <main className={style.content}>{children}</main>
     <Footer />
   </section>
 )

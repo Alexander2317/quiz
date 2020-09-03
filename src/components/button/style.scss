@@ -11,7 +11,18 @@
   font-size: $font-size-md;
   text-align: center;
   color: $white;
+  transition: all 0.2s linear;
+
+  & > a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
+
 
 .success {
   background: $green25;

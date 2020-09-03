@@ -5,7 +5,7 @@ import Typography from '../../../typography'
 import style from './style.scss'
 
 const Footer = () => (
-  <footer style={style.footer}>
+  <footer className={style.footer}>
     <Typography.Description text="Quiz by Alex" />
   </footer>
 )

@@ -1,11 +1,18 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import Layout from '../../components/layout'
+import { Layout, Typography, Button } from '../../components'
+
+import style from './style.scss'
 
 const Home = () => (
   <Layout>
-    <NavLink to="/quiz">Hello, let's start to play!</NavLink>
+    <div className={style.container}>
+      <Typography.Title mode="h1">Hello!</Typography.Title>
+      <Button>
+        <Link to="/quiz">let's start to play!</Link>
+      </Button>
+    </div>
   </Layout>
 )
 

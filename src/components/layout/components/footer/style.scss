@@ -1,3 +1,10 @@
+@import "../../../styles/colors";
+@import "../../../styles/offsets";
+
 .footer {
   flex: 0 0 auto;
+  padding: $offset-size-md2 0;
+  text-align: center;
+  color: $white;
+  background: $gray6d;
 }
