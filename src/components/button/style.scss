@@ -1,0 +1,22 @@
+@import "../styles/colors";
+@import "../styles/font-sizes";
+
+.button {
+  max-width: 300px;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  outline: none;
+  background: $blue34;
+  font-size: $font-size-md;
+  text-align: center;
+  color: $white;
+}
+
+.success {
+  background: $green25;
+}
+
+.error {
+  background: $redff;
+}

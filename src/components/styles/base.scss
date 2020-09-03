@@ -1,0 +1,15 @@
+@import "./normolize";
+@import "./colors";
+@import "./font";
+@import "./font-sizes";
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font;
+  font-size: $font-size-md;
+  line-height: $font-size-md2;
+  color: $black;
+}
