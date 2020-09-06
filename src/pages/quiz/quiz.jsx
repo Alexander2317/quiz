@@ -1,34 +1,62 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import _ from 'lodash'
 
-import { selectors } from '../../redux'
+import { selectors, constants, actions } from '../../redux'
 import { Layout, Typography, Button } from '../../components'
 
 import style from './style.scss'
 
-const Quiz = ({ quiz }) => (
+const { routes } = constants
+
+const handleClick = ({ action, answer }) =>
+  _.memoize((event) => {
+    event.preventDefault()
+    action(answer)
+  })
+
+const Quiz = ({
+  currentQuestion: { title, answers },
+  numberQuestion,
+  maxQuestions,
+  reaction,
+  selectAnswerId,
+  selectQuestionAction,
+}) => (
   <Layout>
     <div className={style.container}>
       <Typography.Title mode="h1">Quiz!</Typography.Title>
-      {quiz.map(({ id, title, answers }) => (
-        <Fragment key={id}>
-          <Typography.Title mode="h2">{title}</Typography.Title>
-          <div className={style.buttons}>
-            {answers.map((answer) => (
-              <Button key={`${title}-${answer.id}`}>
-                <Link to="/quiz">{answer.text}</Link>
-              </Button>
-            ))}
-          </div>
-        </Fragment>
-      ))}
+      <Typography.Title mode="h2">
+        Question {numberQuestion} of {maxQuestions}
+      </Typography.Title>
+
+      <Typography.Title mode="h3">{title}</Typography.Title>
+      <div className={style.buttons}>
+        {answers.map((answer) => (
+          <Button
+            key={answer.id}
+            onClick={handleClick({ action: selectQuestionAction, answer })}
+            mode={answer.id === selectAnswerId ? reaction : ''}
+          >
+            <Link to={routes.quiz}>{answer.text}</Link>
+          </Button>
+        ))}
+      </div>
     </div>
   </Layout>
 )
 
 const mapStateToProps = (state) => ({
-  quiz: selectors.quizSelector(state),
+  currentQuestion: selectors.quizGetCurrentQuestionSelector(state),
+  numberQuestion: selectors.quizNumberQuestionSelector(state),
+  maxQuestions: selectors.quizMaxQuestionsSelector(state),
+  reaction: selectors.quizReactionSelector(state),
+  selectAnswerId: selectors.quizSelectAnswerIdSelector(state),
 })
 
-export default connect(mapStateToProps)(Quiz)
+const mapDispatchToProps = {
+  selectQuestionAction: actions.quiz.selectQuestion,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quiz)
