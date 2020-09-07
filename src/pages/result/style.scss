@@ -1,5 +1,5 @@
-@import "../../components/styles/offsets";
-@import "../../components/styles/mixin";
+@import '../../components/styles/offsets';
+@import '../../components/styles/mixin';
 
 .container {
   @include contentWidth(400px);

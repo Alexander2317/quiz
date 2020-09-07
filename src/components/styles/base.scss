@@ -1,7 +1,7 @@
-@import "./normolize";
-@import "./colors";
-@import "./font";
-@import "./font-sizes";
+@import './normolize';
+@import './colors';
+@import './font';
+@import './font-sizes';
 
 * {
   box-sizing: border-box;
@@ -15,7 +15,6 @@
     height: 100vh;
   }
 }
-
 
 body {
   font-family: $font;

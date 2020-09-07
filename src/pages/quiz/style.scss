@@ -1,6 +1,6 @@
-@import "../../components/styles/offsets";
-@import "../../components/styles/medias";
-@import "../../components/styles/mixin";
+@import '../../components/styles/offsets';
+@import '../../components/styles/medias';
+@import '../../components/styles/mixin';
 
 .container {
   @include contentWidth;
