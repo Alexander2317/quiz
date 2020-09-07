@@ -16,6 +16,15 @@ export default function quiz(state = initialState, action) {
   const { type, payload } = action
 
   switch (type) {
+    case actionTypes.QUIZ_INITIAL:
+      return {
+        ...state,
+        currentQuestion: 1,
+        points: 0,
+        reaction: '',
+        selectAnswerId: '',
+        isEndQuiz: false,
+      }
     case actionTypes.QUIZ_CORRECT_ANSWER:
       return {
         ...state,

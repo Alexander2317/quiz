@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import _ from 'lodash'
@@ -23,29 +23,36 @@ const Quiz = ({
   reaction,
   selectAnswerId,
   selectQuestionAction,
-}) => (
-  <Layout>
-    <div className={style.container}>
-      <Typography.Title mode="h1">Quiz!</Typography.Title>
-      <Typography.Title mode="h2">
-        Question {numberQuestion} of {maxQuestions}
-      </Typography.Title>
+  initialAction,
+}) => {
+  useEffect(() => {
+    initialAction()
+  }, [initialAction])
 
-      <Typography.Title mode="h3">{title}</Typography.Title>
-      <div className={style.buttons}>
-        {answers.map((answer) => (
-          <Button
-            key={answer.id}
-            onClick={handleClick({ action: selectQuestionAction, answer })}
-            mode={answer.id === selectAnswerId ? reaction : ''}
-          >
-            <Link to={routes.quiz}>{answer.text}</Link>
-          </Button>
-        ))}
+  return (
+    <Layout centerContent>
+      <div className={style.container}>
+        <Typography.Title mode="h1">Quiz!</Typography.Title>
+        <Typography.Title mode="h2">
+          Question {numberQuestion} of {maxQuestions}
+        </Typography.Title>
+
+        <Typography.Title mode="h3">{title}</Typography.Title>
+        <div className={style.buttons}>
+          {answers.map((answer) => (
+            <Button
+              key={answer.id}
+              onClick={handleClick({ action: selectQuestionAction, answer })}
+              mode={answer.id === selectAnswerId ? reaction : ''}
+            >
+              {answer.text}
+            </Button>
+          ))}
+        </div>
       </div>
-    </div>
-  </Layout>
-)
+    </Layout>
+  )
+}
 
 const mapStateToProps = (state) => ({
   currentQuestion: selectors.quizGetCurrentQuestionSelector(state),
@@ -56,6 +63,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
+  initialAction: actions.quiz.initial,
   selectQuestionAction: actions.quiz.selectQuestion,
 }
 

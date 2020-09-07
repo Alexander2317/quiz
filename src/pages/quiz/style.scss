@@ -1,14 +1,21 @@
+@import "../../components/styles/offsets";
+@import "../../components/styles/medias";
+@import "../../components/styles/mixin";
+
 .container {
-  max-width: 600px;
-  width: 100%;
-  margin: auto;
-  padding: 20px 0;
+  @include contentWidth;
+  padding: $offset-size-xl 0;
   text-align: center;
 }
 
 .buttons {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: $offset-size-md;
+}
+
+@media screen and (max-width: $mobile) {
+  .buttons {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

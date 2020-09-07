@@ -1,13 +1,16 @@
 import React from 'react'
+import cx from 'classnames'
 
 import '../styles/base.scss'
 
 import { Footer } from './components'
 import style from './style.scss'
 
-const Layout = ({ children }) => (
+const Layout = ({ centerContent, children }) => (
   <section className={style.wrapper}>
-    <main className={style.content}>{children}</main>
+    <main className={cx(style.content, centerContent && style.centerContent)}>
+      {children}
+    </main>
     <Footer />
   </section>
 )

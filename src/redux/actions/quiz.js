@@ -5,6 +5,10 @@ import selectors from '../selectors'
 
 const { quizNumberQuestionSelector, quizMaxQuestionsSelector } = selectors
 
+export const initial = () => ({
+  type: actionTypes.QUIZ_INITIAL,
+})
+
 export const selectQuestion = (question) => (dispatch, getState) => {
   const { id, correct } = question
   const maxQuestion = quizMaxQuestionsSelector(getState())

@@ -1,20 +1,17 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { constants } from '../../redux'
-import { Layout, Typography, Button } from '../../components'
+import { Layout, Typography, Link } from '../../components'
 
 import style from './style.scss'
 
 const { routes } = constants
 
 const Home = () => (
-  <Layout>
+  <Layout centerContent>
     <div className={style.container}>
       <Typography.Title mode="h1">Hello!</Typography.Title>
-      <Button>
-        <Link to={routes.quiz}>let's start to play!</Link>
-      </Button>
+      <Link href={routes.quiz}>let's start to play!</Link>
     </div>
   </Layout>
 )

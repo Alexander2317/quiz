@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { selectors, constants } from '../../redux'
-import { Layout, Typography, Button } from '../../components'
+import { Layout, Typography, Link } from '../../components'
 
 import style from './style.scss'
 
 const { routes } = constants
 
 const Result = ({ quizIsEnd, points }) => (
-  <Layout>
+  <Layout centerContent>
     <div className={style.container}>
       {quizIsEnd ? (
         <Fragment>
@@ -19,9 +18,7 @@ const Result = ({ quizIsEnd, points }) => (
             You scored {points} points
           </Typography.Description>
           <br />
-          <Button>
-            <Link to={routes.quiz}>try again!</Link>
-          </Button>
+          <Link href={routes.quiz}>try again!</Link>
         </Fragment>
       ) : (
         <Fragment>
@@ -29,9 +26,7 @@ const Result = ({ quizIsEnd, points }) => (
             If you want to see a result you should finish the quiz
           </Typography.Title>
           <br />
-          <Button>
-            <Link to={routes.quiz}>try to play if you're not a chick!</Link>
-          </Button>
+          <Link href={routes.quiz}>try to play if you're not a chick!</Link>
         </Fragment>
       )}
     </div>

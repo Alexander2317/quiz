@@ -2,16 +2,17 @@
 @import "../styles/font-sizes";
 
 .button {
+  display: block;
   max-width: 300px;
   width: 100%;
   margin: auto;
   padding: 10px;
   border: none;
-  outline: none;
   background: $blue34;
   font-size: $font-size-md;
   text-align: center;
   color: $white;
+  text-decoration: none;
   transition: all 0.2s linear;
   cursor: pointer;
 
