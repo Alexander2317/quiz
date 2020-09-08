@@ -1,3 +1,4 @@
-export const index = '/'
-export const quiz = '/quiz'
-export const result = '/result'
+export const baseRoute = '/quiz'
+export const index = `${baseRoute}/home`
+export const quiz = `${baseRoute}/play`
+export const result = `${baseRoute}/result`
