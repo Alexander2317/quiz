@@ -1,0 +1,8 @@
+@import '../../components/styles/offsets';
+@import '../../components/styles/mixin';
+
+.container {
+  @include contentWidth;
+  padding: $offset-size-xl 0;
+  text-align: center;
+}

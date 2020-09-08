@@ -1,14 +1,11 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
-import { selectors, constants, actions } from '../../redux'
+import { selectors, actions } from '../../redux'
 import { Layout, Typography, Button } from '../../components'
 
 import style from './style.scss'
-
-const { routes } = constants
 
 const handleClick = ({ action, answer }) =>
   _.memoize((event) => {
