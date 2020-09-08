@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { selectors, constants } from '../../redux'
 import { Layout, Typography, Link } from '../../components'
@@ -32,6 +33,16 @@ const Result = ({ quizIsEnd, points }) => (
     </div>
   </Layout>
 )
+
+Result.propTypes = {
+  quizIsEnd: PropTypes.bool,
+  points: PropTypes.number,
+}
+
+Result.defaultProps = {
+  quizIsEnd: false,
+  points: null,
+}
 
 const mapStateToProps = (state) => ({
   points: selectors.quizPointsSelector(state),

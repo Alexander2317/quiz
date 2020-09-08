@@ -1,5 +1,6 @@
 import React from 'react'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
 import '../styles/base.scss'
 
@@ -14,5 +15,14 @@ const Layout = ({ centerContent, children }) => (
     <Footer />
   </section>
 )
+
+Layout.propTypes = {
+  centerContent: PropTypes.bool,
+  children: PropTypes.node.isRequired,
+}
+
+Layout.defaultProps = {
+  centerContent: false,
+}
 
 export default Layout

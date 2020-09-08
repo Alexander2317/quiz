@@ -8,7 +8,7 @@ const initialState = {
   maxQuestions: questions.length,
   points: 0,
   reaction: '',
-  selectAnswerId: '',
+  selectAnswerId: null,
   isEndQuiz: false,
 }
 
@@ -22,7 +22,7 @@ export default function quiz(state = initialState, action) {
         currentQuestion: 1,
         points: 0,
         reaction: '',
-        selectAnswerId: '',
+        selectAnswerId: null,
         isEndQuiz: false,
       }
     case actionTypes.QUIZ_CORRECT_ANSWER:
@@ -43,7 +43,7 @@ export default function quiz(state = initialState, action) {
         ...state,
         currentQuestion: state.currentQuestion + 1,
         reaction: '',
-        selectAnswerId: '',
+        selectAnswerId: null,
       }
     case actionTypes.QUIZ_END:
       return {

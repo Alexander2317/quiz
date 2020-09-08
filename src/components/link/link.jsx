@@ -2,6 +2,7 @@ import React, { useCallback } from 'react'
 import { push } from 'connected-react-router'
 import { useDispatch } from 'react-redux'
 import cx from 'classnames'
+import PropTypes from 'prop-types'
 
 import baseStyle from '../styles/classes.scss'
 
@@ -27,6 +28,19 @@ const Link = ({ text, children, mode, href, ...props }) => {
       {text || children}
     </a>
   )
+}
+
+Link.propTypes = {
+  text: PropTypes.string,
+  children: PropTypes.node,
+  mode: PropTypes.string,
+  href: PropTypes.string.isRequired,
+}
+
+Link.defaultProps = {
+  text: '',
+  children: null,
+  mode: '',
 }
 
 export default Link

@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import _ from 'lodash'
+import PropTypes from 'prop-types'
 
 import { selectors, actions } from '../../redux'
 import { Layout, Typography, Button } from '../../components'
@@ -49,6 +50,23 @@ const Quiz = ({
       </div>
     </Layout>
   )
+}
+
+Quiz.propTypes = {
+  currentQuestion: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    answers: PropTypes.array.isRequired,
+  }).isRequired,
+  numberQuestion: PropTypes.number.isRequired,
+  maxQuestions: PropTypes.number.isRequired,
+  reaction: PropTypes.string.isRequired,
+  selectAnswerId: PropTypes.number,
+  selectQuestionAction: PropTypes.func.isRequired,
+  initialAction: PropTypes.func.isRequired,
+}
+
+Quiz.defaultProps = {
+  selectAnswerId: null,
 }
 
 const mapStateToProps = (state) => ({
