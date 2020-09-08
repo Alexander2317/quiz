@@ -37,15 +37,20 @@ const Quiz = ({
 
         <Typography.Title mode="h3">{title}</Typography.Title>
         <div className={style.buttons}>
-          {answers.map((answer) => (
-            <Button
-              key={answer.id}
-              onClick={handleClick({ action: selectQuestionAction, answer })}
-              mode={answer.id === selectAnswerId ? reaction : ''}
-            >
-              {answer.text}
-            </Button>
-          ))}
+          {answers.map((answer) => {
+            const isSelectAnswer = answer.id === selectAnswerId
+
+            return (
+              <Button
+                key={answer.id}
+                onClick={handleClick({ action: selectQuestionAction, answer })}
+                mode={isSelectAnswer ? reaction : ''}
+                disable={isSelectAnswer}
+              >
+                {answer.text}
+              </Button>
+            )
+          })}
         </div>
       </div>
     </Layout>
