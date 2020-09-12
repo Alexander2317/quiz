@@ -7,6 +7,7 @@ import style from './style.scss'
 
 const Button = ({ text, children, mode, disable, ...props }) => (
   <button
+    data-testid="button"
     className={cx(style.button, baseStyle[mode], disable && baseStyle.disable)}
     {...props}
   >
