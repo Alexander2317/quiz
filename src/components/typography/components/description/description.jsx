@@ -10,9 +10,13 @@ const Description = ({ text, children, color, isInline }) => {
   }
 
   return isInline ? (
-    <span {...props}>{text || children}</span>
+    <span data-testid="inline-description" {...props}>
+      {text || children}
+    </span>
   ) : (
-    <p {...props}>{text || children}</p>
+    <p data-testid="description" {...props}>
+      {text || children}
+    </p>
   )
 }
 
