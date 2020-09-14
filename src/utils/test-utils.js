@@ -1,5 +1,6 @@
 import React from 'react'
 import { render as rtlRender } from '@testing-library/react'
+import configureStore from 'redux-mock-store'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -32,5 +33,8 @@ function render(
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions })
 }
 
+const middlewares = [routerMiddleware(history), thunk]
+const mockStore = configureStore(middlewares)
+
 export * from '@testing-library/react'
-export { render }
+export { render, mockStore }
