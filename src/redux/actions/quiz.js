@@ -9,22 +9,25 @@ export const initial = () => ({
   type: actionTypes.QUIZ_INITIAL,
 })
 
-export const selectQuestion = (question) => (dispatch, getState) => {
-  const { id, correct } = question
-  const maxQuestion = quizMaxQuestionsSelector(getState())
-  const numberQuestion = quizNumberQuestionSelector(getState())
-
+export const checkQuestion = ({ id, correct }) => (dispatch) => {
   if (!correct) {
-    dispatch({
+    return dispatch({
       type: actionTypes.QUIZ_INCORRECT_ANSWER,
       payload: { id },
     })
-  } else {
-    dispatch({
-      type: actionTypes.QUIZ_CORRECT_ANSWER,
-      payload: { id },
-    })
   }
+
+  return dispatch({
+    type: actionTypes.QUIZ_CORRECT_ANSWER,
+    payload: { id },
+  })
+}
+
+export const selectQuestion = (question) => (dispatch, getState) => {
+  const maxQuestion = quizMaxQuestionsSelector(getState())
+  const numberQuestion = quizNumberQuestionSelector(getState())
+
+  dispatch(checkQuestion(question))
 
   const timerId = setTimeout(() => {
     clearTimeout(timerId)
