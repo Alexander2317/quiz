@@ -2,7 +2,7 @@ import { questions } from '../../config'
 
 import { actionTypes } from '../constants'
 
-const initialState = {
+export const initialState = {
   questions,
   currentQuestion: 1,
   maxQuestions: questions.length,
