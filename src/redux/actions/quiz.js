@@ -1,6 +1,7 @@
 import { push } from 'connected-react-router'
 
-import { actionTypes, base, routes } from '../constants'
+import { asyncCall } from '../../utils'
+import { actionTypes, routes } from '../constants'
 import selectors from '../selectors'
 
 const { quizNumberQuestionSelector, quizMaxQuestionsSelector } = selectors
@@ -29,9 +30,7 @@ export const selectQuestion = (question) => (dispatch, getState) => {
 
   dispatch(checkQuestion(question))
 
-  const timerId = setTimeout(() => {
-    clearTimeout(timerId)
-
+  asyncCall(() => {
     if (numberQuestion >= maxQuestion) {
       dispatch({
         type: actionTypes.QUIZ_END,
@@ -43,5 +42,5 @@ export const selectQuestion = (question) => (dispatch, getState) => {
     return dispatch({
       type: actionTypes.QUIZ_NEXT_QUESTION,
     })
-  }, base.DELAY_TIMER)
+  })
 }

@@ -1,6 +1,6 @@
-import { testUtils } from '../../../utils'
+import { testUtils, asyncCall } from '../../../utils'
 
-import { base, actionTypes } from '../../constants'
+import { actionTypes } from '../../constants'
 
 import { initial, checkQuestion, selectQuestion } from '../quiz'
 
@@ -61,18 +61,16 @@ describe('actions quiz', () => {
 
     const actions = store.getActions()
 
-    const timerId = setTimeout(() => {
-      done()
-      clearTimeout(timerId)
-
+    asyncCall(() => {
       expect(actions).toEqual(expectedAction)
-    }, base.DELAY_TIMER)
+      done()
+    })
   })
 
   it('check end quiz', (done) => {
     const store = testUtils.mockStore({
       quiz: {
-        currentQuestion: 1,
+        currentQuestion: 2,
         maxQuestions: 1,
       },
     })
@@ -91,11 +89,9 @@ describe('actions quiz', () => {
 
     const actions = store.getActions()
 
-    const timerId = setTimeout(() => {
-      done()
-      clearTimeout(timerId)
-
+    asyncCall(() => {
       expect(actions).toEqual(expectedAction)
-    }, base.DELAY_TIMER)
+      done()
+    })
   })
 })
