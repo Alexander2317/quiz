@@ -12,6 +12,7 @@ const { routes } = constants
 
 const Pages = () => (
   <Switch>
+    <Redirect exact strict from="/" to={routes.index} />
     <Redirect exact strict from={`${routes.baseRoute}/`} to={routes.index} />
     <Route exact strict path={routes.index} component={Home} />
     <Route exact strict path={routes.quiz} component={Quiz} />
